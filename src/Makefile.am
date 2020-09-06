@@ -1,4 +1,4 @@
-DIST_SUBDIRS = secp256k1
+DIST_SUBDIRS = secp256k1 univalue minizip
 AM_LDFLAGS = $(PTHREAD_CFLAGS) $(LIBTOOL_LDFLAGS)
 
 
@@ -18,9 +18,15 @@ $(LIBLEVELDB) $(LIBMEMENV):
 endif
 
 BITCOIN_CONFIG_INCLUDES=-I$(builddir)/config
+LIBMINIZIP = minizip/libminizip.la
+$(LIBMINIZIP):
+	@echo "Building minizip ..." && $(MAKE) -C $(@D) $(@F) CXX="$(CXX)" CC="$(CC)" PLATFORM=$(TARGET_OS) AR="$(AR)" OPT="$(AM_CXXFLAGS) $(PIE_FLAGS) $(CXXFLAGS) $(AM_CPPFLAGS) $(CPPFLAGS)"
+
 BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
 BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
+BITCOIN_INCLUDES += -I$(srcdir)/minizip
+BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
 LIBBITCOIN_SERVER=libbitcoin_server.a
 LIBBITCOIN_WALLET=libbitcoin_wallet.a
@@ -74,6 +80,10 @@ endif
 .PHONY: FORCE
 # lyra core #
 BITCOIN_CORE_H = \
+  bootstrap/bootstrapmodel.h \
+  bootstrap/curl.h \
+  bootstrap/finally.h \
+  bootstrap/ziputil.h \
   activemasternode.h \
   addrman.h \
   alert.h \
@@ -330,6 +340,9 @@ libbitcoin_common_a_SOURCES = \
 # backward-compatibility objects and their sanity checks are linked.
 libbitcoin_util_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_util_a_SOURCES = \
+  bootstrap/bootstrapmodel.cpp \
+  bootstrap/curl.cpp \
+  bootstrap/ziputil.cpp \
   allocators.cpp \
   compat/strnlen.cpp \
   compat/glibc_sanity.cpp \
