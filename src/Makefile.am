@@ -104,6 +104,7 @@ BITCOIN_CORE_H = \
   compat.h \
   compat/sanity.h \
   compressor.h \
+  context.h \
   primitives/block.h \
   primitives/transaction.h \
   core_io.h \
@@ -349,6 +350,7 @@ libbitcoin_util_a_SOURCES = \
   compat/glibcxx_sanity.cpp \
   chainparamsbase.cpp \
   clientversion.cpp \
+  context.cpp \
   random.cpp \
   rpcprotocol.cpp \
   sync.cpp \
@@ -382,7 +384,8 @@ lyrad_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
-  $(LIBSECP256K1)
+  $(LIBSECP256K1) \
+  $(LIBMINIZIP)
 
 if ENABLE_ZMQ
 lyrad_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
@@ -398,7 +401,7 @@ if TARGET_WINDOWS
 lyrad_SOURCES += lyrad-res.rc
 endif
 
-lyrad_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+lyrad_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(CURL_LIBS)
 lyrad_CPPFLAGS = $(BITCOIN_INCLUDES)
 lyrad_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
@@ -415,6 +418,7 @@ lyra_cli_SOURCES = \
   lyra-cli.cpp
 
 lyra_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
+lyra_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS) $(CURL_LIBS)
 #
 
 # lyra-tx binary #
@@ -429,6 +433,8 @@ lyra_tx_LDADD = \
 
 lyra_tx_SOURCES = lyra-tx.cpp
 lyra_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+lyra_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(CURL_LIBS)
+
 #
 lyra_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
