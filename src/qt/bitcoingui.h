@@ -30,7 +30,6 @@ class UnitDisplayStatusBarControl;
 class WalletFrame;
 class WalletModel;
 class MasternodeList;
-class BootstrapDialog;
 
 class CWallet;
 
@@ -117,7 +116,6 @@ private:
     QAction* openNetworkAction;
     QAction* openPeersAction;
     QAction* openRepairAction;
-    QAction* openBootstrapAction;
     QAction* openConfEditorAction;
     QAction* openMNConfEditorAction;
     QAction* showBackupsAction;
@@ -131,7 +129,6 @@ private:
     Notificator* notificator;
     RPCConsole* rpcConsole;
     BlockExplorer* explorerWindow;
-    BootstrapDialog* bootstrapWindow;
 
     /** Keep track of previous number of blocks, to detect progress */
     int prevBlocks;

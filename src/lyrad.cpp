@@ -6,7 +6,6 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "clientversion.h"
-#include "context.h"
 #include "init.h"
 #include "main.h"
 #include "masternodeconfig.h"
@@ -173,8 +172,6 @@ bool AppInit(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-    ContextScopeInit context;
-
     SetupEnvironment();
 
     // Connect lyrad signal handlers
