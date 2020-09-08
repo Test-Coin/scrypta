@@ -21,14 +21,14 @@ sudo chmod -R 755 scrypta
 cd scrypta
 
 sudo apt install g++-mingw-w64-x86-64 -y
-sudo update-alternatives --config x86_64-w64-mingw32-g++ # Set the default mingw32 g++ compiler option to posix. or choose 0 for deb8
+sudo update-alternatives --config x86_64-w64-mingw32-g++ -y # Set the default mingw32 g++ compiler option to posix. or choose 0 for deb8
 PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
 cd depends
-make HOST=x86_64-w64-mingw32 -j4
+sudo make HOST=x86_64-w64-mingw32 -j4
 
 cd ..
-./autogen.sh # not required when building from tarball
-CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
-make
+sudo ./autogen.sh # not required when building from tarball
+sudo CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
+sudo make
 
 echo "Remember to strip the QT file!"
