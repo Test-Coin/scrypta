@@ -1,5 +1,4 @@
 cd ..
-<<<<<<< HEAD
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git -y
@@ -16,9 +15,10 @@ sudo apt-get install libgmp3-dev libevent-dev bsdmainutils libboost-all-dev open
 sudo apt-get install libssl1.0-dev -y
 
 sudo apt install g++-mingw-w64-x86-64 -y
-sudo update-alternatives --config x86_64-w64-mingw32-g++ -1 # Set the default mingw32 g++ compiler option to posix. or choose 0 for deb8
+sudo update-alternatives --config x86_64-w64-mingw32-g++ -y # Set the default mingw32 g++ compiler option to posix. or choose 0 for deb8
 PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
 cd depends
+<<<<<<< HEAD:scripts/lazy.sh
 sudo make HOST=x86_64-w64-mingw32 -j4
 
 cd ..
@@ -28,8 +28,8 @@ sudo make
 
 echo "Remember to strip the QT file!"
 =======
-./autogen.sh # not required when building from tarball
-CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
-make
-echo "Remember to strip the QT file!"
->>>>>>> parent of 38a9292... zlib
+make HOST=x86_64-w64-mingw32 -j4
+cd ..
+cd scripts
+bash build-win64.sh
+>>>>>>> parent of 38a9292... zlib:scripts/buildwindows64.sh
