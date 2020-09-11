@@ -1,5 +1,4 @@
 cd ..
-<<<<<<< HEAD
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git -y
