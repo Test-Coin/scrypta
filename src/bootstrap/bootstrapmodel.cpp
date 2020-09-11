@@ -739,7 +739,6 @@ std::vector<boost::filesystem::path> BootstrapModel::GetBootstrapDirList(const b
 {
     return {
         bootstrapDir / "blocks",
-        bootstrapDir / "chainstate",
-        bootstrapDir / "zerocoin"
+        bootstrapDir / "chainstate"
     };
 }

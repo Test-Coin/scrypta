@@ -47,7 +47,6 @@ enum class BootstrapMode
  * Blockchain snapshot is .zip archive that contains all required files and directories, for now it is:
  * /blocks
  * /chainstate
- * /zerocoin
  * galilel.conf (optional)
  *
  * Optionally .zip archive can contain signed checksum in the end of the file.
@@ -71,7 +70,7 @@ enum class BootstrapMode
  * - if there is file named /bootstrap/verified - perform steps below
  * - if directory exists in in both places (data directory and /bootstrap folder) perform next operations on it:
  *   - remove .bak directory or file
- *   - rename directories: blocks->blocks.bak, chainstate->chainstate.bak, zerocoin->zerocoin.bak, .conf->conf.bak
+ *   - rename directories: blocks->blocks.bak, chainstate->chainstate.bak, .conf->conf.bak
  *   - move directory from /bootstrap=>data directory
  * - remove peers.dat and banlist.dat
  * - remove folder /bootstrap and .zip archive in data directory
