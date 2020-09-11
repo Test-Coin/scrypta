@@ -27,9 +27,3 @@ sudo CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure -
 sudo make
 
 echo "Remember to strip the QT file!"
-=======
-./autogen.sh # not required when building from tarball
-CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
-make
-echo "Remember to strip the QT file!"
->>>>>>> parent of 38a9292... zlib
