@@ -6,6 +6,7 @@ $(package)_sha256_hash=b5920ffd6a8c95585fb95070e0ced38322790cb335c39d0dab852d12e
 $(package)_dependencies=openssl
 $(package)_cflags_linux=-fPIC
 
+
 define $(package)_set_vars
 $(package)_config_opts=--disable-shared --with-ssl
 endef
