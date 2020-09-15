@@ -13,6 +13,9 @@ sudo apt-get install libzmq3-dev -y
 sudo apt-get install libminiupnpc-dev -y
 sudo apt-get install libgmp3-dev libevent-dev bsdmainutils libboost-all-dev openssl -y
 
+# Install libtool	
+sudo apt-get install libtool -y
+
 ./autogen.sh
 ./configure
 make
